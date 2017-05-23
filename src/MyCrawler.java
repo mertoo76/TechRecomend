@@ -1,35 +1,38 @@
 import java.util.regex.Pattern;
 
-
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+
 public class MyCrawler extends WebCrawler {
 
-	LinkedList<LinkedList> tam = new LinkedList<LinkedList>();
-	
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g" + "|png|tiff?|mid|mp2|mp3|mp4"
 			+ "|wav|avi|mov|mpeg|ram|m4v|pdf" + "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
 
 	/**
-	 * You should implement this function to specify whether
-	 * the given url should be crawled or not (based on your
-	 * crawling logic).
+	 * This method receives two parameters. The first parameter is the page in
+	 * which we have discovered this new url and the second parameter is the new
+	 * url. You should implement this function to specify whether the given url
+	 * should be crawled or not (based on your crawling logic). In this example,
+	 * we are instructing the crawler to ignore urls that have css, js, git, ...
+	 * extensions and to only accept urls that start with
+	 * "http://www.ics.uci.edu/". In this case, we didn't need the referringPage
+	 * parameter to make the decision.
 	 */
-	public boolean shouldVisit(WebURL url) {
+	@Override
+	public boolean shouldVisit(Page referringPage, WebURL url) {
 		String href = url.getURL().toLowerCase();
-		return !FILTERS.matcher(href).matches() && (href.startsWith("http://stackoverflow.com/users")); //MERT
+		return !FILTERS.matcher(href).matches() && href.startsWith("https://stackoverflow.com/users");
 	}
-	// Ozan 
+
 	/**
-	 * This function is called when a page is fetched and ready 
-	 * to be processed by your program.
+	 * This function is called when a page is fetched and ready to be processed
+	 * by your program.
 	 */
 	@Override
 	public void visit(Page page) {
@@ -67,16 +70,18 @@ public class MyCrawler extends WebCrawler {
 			//String[] tech = parts[1].split("</a>");
 			int index;
 		
-			LinkedList<String> list = new LinkedList<String>();
 			
 			for(index=1;index<parts.length;index++){
 				String[] tech = parts[index].split("</a>");
 				tech[0] = tech[0].replace("<img src=\"//i.stack.imgur.com/tKsDb.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">","");
 				System.out.println("Teknolojiler: " + tech[0]);
-				list.add(tech[0]);
+				
 			}
 			
-			tam.add(list);
+			
+		
+			
+			
 			
 			/*while(html!=null){
 				System.out.println("Text length: " + html);
@@ -93,6 +98,5 @@ public class MyCrawler extends WebCrawler {
 		//	System.out.println("Text\n---- " + html);
 		}
 
-		System.out.println("=============");
 	}
 }
