@@ -20,6 +20,7 @@ public class Controller {
         /*
          * Instantiate the controller for this crawl.
          */
+        //
         PageFetcher pageFetcher = new PageFetcher(config);
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
