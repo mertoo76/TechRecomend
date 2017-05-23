@@ -26,7 +26,7 @@ public class MyCrawler extends WebCrawler {
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches() && (href.startsWith("http://stackoverflow.com/users")); //MERT
 	}
-
+	// Ozan 
 	/**
 	 * This function is called when a page is fetched and ready 
 	 * to be processed by your program.
