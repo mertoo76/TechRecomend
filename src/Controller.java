@@ -8,14 +8,14 @@ public class Controller {
 	public static void main(String[] args) throws Exception {
 		String crawlStorageFolder = "/data/crawl/root";
         int numberOfCrawlers = 1;
-
+        
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setPolitenessDelay(1000);
         config.setMaxDepthOfCrawling(5);
         config.setMaxPagesToFetch(10);
         config.setResumableCrawling(false);
-        
+        //
 
         /*
          * Instantiate the controller for this crawl.
