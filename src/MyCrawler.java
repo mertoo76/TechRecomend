@@ -8,12 +8,14 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
 public class MyCrawler extends WebCrawler {
 
+	
 	private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|bmp|gif|jpe?g" + "|png|tiff?|mid|mp2|mp3|mp4"
 			+ "|wav|avi|mov|mpeg|ram|m4v|pdf" + "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
 
@@ -37,7 +39,7 @@ public class MyCrawler extends WebCrawler {
 	}
 
 	List<Set<String>> itemsetList = new ArrayList<>();
-	List<String> items = null;
+	
 	AprioriFrequentItemsetGenerator<String> generator = new AprioriFrequentItemsetGenerator<>();
 
 	/**
@@ -78,7 +80,7 @@ public class MyCrawler extends WebCrawler {
 			// String[] tech = parts[1].split("</a>");
 			int index;
 			int i = 0;
-			String a[] = null;
+			LinkedList<String> items = new LinkedList<String>();
 			for (index = 1; index < parts.length; index++) {
 				String[] tech = parts[index].split("</a>");
 				tech[0] = tech[0].replace(
@@ -86,17 +88,14 @@ public class MyCrawler extends WebCrawler {
 						"");
 				System.out.println("Teknolojiler: " + tech[0]);
 				//items.add(tech[0]);
-				a[i++] = tech[0];
+				items.add(tech[0]);
 			}
+			
 			itemsetList.add(new HashSet<>(items));
-			/*
-			 * while(html!=null){ System.out.println("Text length: " + html);
-			 * parts = html.split("rel=\"tag\""); html= parts[1]; // 034556
-			 * parts = html.split("</a>"); html= parts[0]; // 034556 }
-			 */
-
-			// System.out.println("Text\n---- " + html);
+			
+				
 		}
+		
 
 	}
 }
