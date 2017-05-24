@@ -31,6 +31,7 @@ public class MyCrawler extends WebCrawler {
 	 */
 	@Override
 	public boolean shouldVisit(Page referringPage, WebURL url) {
+
 		String href = url.getURL().toLowerCase();
 		return !FILTERS.matcher(href).matches() && href.startsWith("https://stackoverflow.com/users");
 	}
@@ -83,13 +84,21 @@ public class MyCrawler extends WebCrawler {
 				tech[0] = tech[0].replace(
 						"<img src=\"//i.stack.imgur.com/tKsDb.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">",
 						"");
+				tech[0] = tech[0].replace(
+						"<img src=\"//i.stack.imgur.com/vobok.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">",
+						"");
+				tech[0] = tech[0].replace(
+						"<img src=\"//i.stack.imgur.com/aABck.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">",
+						"");
+				
+				//<img src="//i.stack.imgur.com/vobok.png" height="16" width="18" alt="" class="sponsor-tag-img">
 				System.out.println("Teknolojiler: " + tech[0]);
 				//items.add(tech[0]);
 				items.add(tech[0]);
 			}
 			
 			itemsetList.add(new HashSet<>(items));
-			globals.setItemsetList(itemsetList);
+			globals.setItemsetList(itemsetList,this.getMyController().tech);
 				
 		}
 		

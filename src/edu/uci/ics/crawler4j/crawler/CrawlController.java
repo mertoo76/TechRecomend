@@ -44,6 +44,7 @@ import edu.uci.ics.crawler4j.util.IO;
  */
 public class CrawlController extends Configurable {
 
+	public String tech;
     static final Logger logger = LoggerFactory.getLogger(CrawlController.class);
 
     /**

@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class globals {
 	public static List<Set<String>> itemsetList;
-
+public static  String tech;
 	public static List<Set<String>> getItemsetList() {
 		AprioriFrequentItemsetGenerator<String> generator =
                 new AprioriFrequentItemsetGenerator<>();
@@ -31,7 +31,7 @@ public class globals {
         startTime = System.nanoTime();
         List<AssociationRule<String>> associationRuleList = 
                 new AssociationRuleGenerator<String>()
-                        .mineAssociationRules(data, 0.8);
+                        .mineAssociationRules(data, 0.5);
         endTime = System.nanoTime();
 
         i = 1;
@@ -40,7 +40,9 @@ public class globals {
         System.out.println("--- Association rules ---");
 
         for (AssociationRule<String> rule : associationRuleList) {
+        	if(rule.getAntecedent().contains(tech)){
             System.out.printf("%2d: %s\n", i++, rule);
+        	}
             if(i==50){//cok fazla yazdiriyor
             	break;
             }
@@ -52,8 +54,9 @@ public class globals {
 		
 	}
 
-	public static void setItemsetList(List<Set<String>> itemsetList) {
+	public static void setItemsetList(List<Set<String>> itemsetList, String t) {
 		System.out.println("Set succesfull" + itemsetList.size());
+		tech = t;
 		globals.itemsetList = itemsetList;
 		
 		
