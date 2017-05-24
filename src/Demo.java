@@ -15,7 +15,7 @@ public class Demo {
                 new AprioriFrequentItemsetGenerator<>();
 
         List<Set<String>> itemsetList = new ArrayList<>();
-
+        // OZan
         itemsetList.add(new HashSet<>(Arrays.asList("a", "b")));
         itemsetList.add(new HashSet<>(Arrays.asList("b", "c", "d")));
         itemsetList.add(new HashSet<>(Arrays.asList("a", "c", "d", "e")));

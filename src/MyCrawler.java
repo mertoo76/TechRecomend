@@ -5,6 +5,9 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -30,6 +33,10 @@ public class MyCrawler extends WebCrawler {
 		return !FILTERS.matcher(href).matches() && href.startsWith("https://stackoverflow.com/users");
 	}
 
+	List<Set<String>> itemsetList = new ArrayList<>();
+	List<String> items = null;
+	AprioriFrequentItemsetGenerator<String> generator = new AprioriFrequentItemsetGenerator<>();
+
 	/**
 	 * This function is called when a page is fetched and ready to be processed
 	 * by your program.
@@ -51,51 +58,41 @@ public class MyCrawler extends WebCrawler {
 			Set<WebURL> links = htmlParseData.getOutgoingUrls();
 
 			/*
-			System.out.println("Text length: " + text.length());
-			System.out.println("Html length: " + html.length());
-			System.out.println("Number of outgoing links: " + links.size());
-			*/
-			
-	/*		
-			String[] parts = html.split("rel=\"tag\"");
-			html= parts[1]; // 034556
-			parts = html.split("</a>");
-			html= parts[0]; // 034556
-			System.out.println("Text length: " + html);
-			*/
-			
+			 * System.out.println("Text length: " + text.length());
+			 * System.out.println("Html length: " + html.length());
+			 * System.out.println("Number of outgoing links: " + links.size());
+			 */
+
+			/*
+			 * String[] parts = html.split("rel=\"tag\""); html= parts[1]; //
+			 * 034556 parts = html.split("</a>"); html= parts[0]; // 034556
+			 * System.out.println("Text length: " + html);
+			 */
+
 			String[] parts = html.split("rel=\"tag\">");
-			
-			//System.out.println("Text length: " + parts.length);
-			//String[] tech = parts[1].split("</a>");
+
+			// System.out.println("Text length: " + parts.length);
+			// String[] tech = parts[1].split("</a>");
 			int index;
-		
-			
-			for(index=1;index<parts.length;index++){
+			int i = 0;
+			String a[] = null;
+			for (index = 1; index < parts.length; index++) {
 				String[] tech = parts[index].split("</a>");
-				tech[0] = tech[0].replace("<img src=\"//i.stack.imgur.com/tKsDb.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">","");
+				tech[0] = tech[0].replace(
+						"<img src=\"//i.stack.imgur.com/tKsDb.png\" height=\"16\" width=\"18\" alt=\"\" class=\"sponsor-tag-img\">",
+						"");
 				System.out.println("Teknolojiler: " + tech[0]);
-				
+				//items.add(tech[0]);
+				a[i++] = tech[0];
 			}
-			
-			
-		
-			
-			
-			
-			/*while(html!=null){
-				System.out.println("Text length: " + html);
-				parts = html.split("rel=\"tag\"");
-				html= parts[1]; // 034556
-				parts = html.split("</a>");
-				html= parts[0]; // 034556
-			}*/
-			
-			
-			
-			
-		
-		//	System.out.println("Text\n---- " + html);
+			itemsetList.add(new HashSet<>(items));
+			/*
+			 * while(html!=null){ System.out.println("Text length: " + html);
+			 * parts = html.split("rel=\"tag\""); html= parts[1]; // 034556
+			 * parts = html.split("</a>"); html= parts[0]; // 034556 }
+			 */
+
+			// System.out.println("Text\n---- " + html);
 		}
 
 	}
