@@ -1,8 +1,8 @@
-/Controller.class
-/MyCrawler.class
-/AssociationRule.class
-/FrequentItemsetData.class
-/AssociationRuleGenerator.class
-/AprioriFrequentItemsetGenerator.class
 /AprioriFrequentItemsetGenerator$1.class
+/AprioriFrequentItemsetGenerator.class
+/AssociationRule.class
+/AssociationRuleGenerator.class
+/Controller.class
 /Demo.class
+/FrequentItemsetData.class
+/MyCrawler.class
