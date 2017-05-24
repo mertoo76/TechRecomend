@@ -18,7 +18,7 @@ public class Controller {
 		config.setCrawlStorageFolder(crawlStorageFolder);
 		config.setPolitenessDelay(1000);
 		config.setMaxDepthOfCrawling(5);
-		config.setMaxPagesToFetch(10);
+		config.setMaxPagesToFetch(40);
 		config.setResumableCrawling(false);
 		//
 		//
@@ -43,5 +43,15 @@ public class Controller {
 		 * will reach the line after this only when crawling is finished.
 		 */
 		controller.start(MyCrawler.class, numberOfCrawlers);
+		
+		
+		AprioriFrequentItemsetGenerator<String> generator =
+                new AprioriFrequentItemsetGenerator<>();
+		long startTime = System.nanoTime();
+		List<Set<String>> itemsetList2 = new ArrayList<>();
+		itemsetList2 = globals.getItemsetList();
+		//BURAYA !!!!!!
+		System.out.println("Hello darkness2");
+        
 	}
 }

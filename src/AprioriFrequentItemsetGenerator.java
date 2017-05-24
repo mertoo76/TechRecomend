@@ -52,7 +52,7 @@ public class AprioriFrequentItemsetGenerator<I> {
         // 'k' denotes the cardinality of itemsets processed at each iteration
         // of the following loop.
         int k = 1;
-
+        
         do {
             ++k;
 
@@ -75,9 +75,9 @@ public class AprioriFrequentItemsetGenerator<I> {
                                        supportCountMap, 
                                        minimumSupport, 
                                        transactionList.size()));
-
+            System.out.println("cikmadan once");
         } while (!map.get(k).isEmpty());
-
+        
         return new FrequentItemsetData<>(extractFrequentItemsets(map),
                                          supportCountMap,
                                          minimumSupport,
@@ -163,6 +163,7 @@ public class AprioriFrequentItemsetGenerator<I> {
      * @return the list of candidates each of size <b>k + 1</b>.
      */
     private List<Set<I>> generateCandidates(List<Set<I>> itemsetList) {
+    	
         List<List<I>> list = new ArrayList<>(itemsetList.size());
 
         for (Set<I> itemset : itemsetList) {
@@ -184,7 +185,7 @@ public class AprioriFrequentItemsetGenerator<I> {
                 }
             }
         }
-
+        
         return ret;
     }
 

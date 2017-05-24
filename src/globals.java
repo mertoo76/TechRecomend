@@ -1,37 +1,19 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Demo {
+public class globals {
+	public static List<Set<String>> itemsetList;
 
-    public static void main(String[] args) {
-        demo();
-    }
-
-    private static void demo() {
-        AprioriFrequentItemsetGenerator<String> generator =
+	public static List<Set<String>> getItemsetList() {
+		AprioriFrequentItemsetGenerator<String> generator =
                 new AprioriFrequentItemsetGenerator<>();
-
-        List<Set<String>> itemsetList = new ArrayList<>();
-        // OZan
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "b")));
-        itemsetList.add(new HashSet<>(Arrays.asList("b", "c", "d")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "c", "d", "e")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "d", "e")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "b", "c")));
-
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "b", "c", "d")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "b", "c")));
-        itemsetList.add(new HashSet<>(Arrays.asList("a", "b", "d")));
-        itemsetList.add(new HashSet<>(Arrays.asList("b", "c", "e")));
-
-        long startTime = System.nanoTime();
+		long startTime = System.nanoTime();
+		itemsetList.remove(0);
         FrequentItemsetData<String> data = generator.generate(itemsetList, 0.02);
+        
         long endTime = System.nanoTime();
-
+       
         int i = 1;
 
         System.out.println("--- Frequent itemsets ---");
@@ -44,12 +26,12 @@ public class Demo {
         }
 
         System.out.printf("Mined frequent itemset in %d milliseconds.\n", 
-                          (endTime - startTime) / 1_000_000);
+                         (endTime - startTime) / 1_000_000);
 
         startTime = System.nanoTime();
         List<AssociationRule<String>> associationRuleList = 
                 new AssociationRuleGenerator<String>()
-                        .mineAssociationRules(data, 0.4);
+                        .mineAssociationRules(data, 0.8);
         endTime = System.nanoTime();
 
         i = 1;
@@ -66,5 +48,16 @@ public class Demo {
 
         System.out.printf("Mined association rules in %d milliseconds.\n",
                           (endTime - startTime) / 1_000_000);
-    }
+		return itemsetList;
+		
+	}
+
+	public static void setItemsetList(List<Set<String>> itemsetList) {
+		System.out.println("Set succesfull" + itemsetList.size());
+		globals.itemsetList = itemsetList;
+		
+		
+	}
+	
+
 }

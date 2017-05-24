@@ -1,17 +1,14 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.regex.Pattern;
 
 public class MyCrawler extends WebCrawler {
 
@@ -40,8 +37,8 @@ public class MyCrawler extends WebCrawler {
 
 	List<Set<String>> itemsetList = new ArrayList<>();
 	
-	AprioriFrequentItemsetGenerator<String> generator = new AprioriFrequentItemsetGenerator<>();
-
+	//AprioriFrequentItemsetGenerator<String> generator = new AprioriFrequentItemsetGenerator<>();
+	
 	/**
 	 * This function is called when a page is fetched and ready to be processed
 	 * by your program.
@@ -55,7 +52,7 @@ public class MyCrawler extends WebCrawler {
 		System.out.println("Docid: " + docid);
 		System.out.println("URL: " + url);
 		System.out.println("Docid of parent page: " + parentDocid);
-
+		
 		if (page.getParseData() instanceof HtmlParseData) {
 			HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 			String text = htmlParseData.getText();
@@ -92,10 +89,14 @@ public class MyCrawler extends WebCrawler {
 			}
 			
 			itemsetList.add(new HashSet<>(items));
-			
+			globals.setItemsetList(itemsetList);
 				
 		}
 		
+		
+	}
 
+	public List<Set<String>> getItemsetList() {
+		return itemsetList;
 	}
 }
