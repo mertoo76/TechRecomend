@@ -48,8 +48,8 @@ public class MFrame extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(6, 87, 418, 129);
 		contentPane.add(scrollPane);
-		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		
 		textField = new JTextField();
@@ -113,6 +113,7 @@ public class MFrame extends JFrame {
 					
 				}
 				textPane.setText(tmp);
+				tmp="";
 			}
 		});
 		btnFind.setBounds(335, 227, 89, 23);
@@ -123,6 +124,16 @@ public class MFrame extends JFrame {
 		JLabel lblTeknoloji = new JLabel("Teknoloji:");
 		lblTeknoloji.setBounds(7, 14, 66, 14);
 		contentPane.add(lblTeknoloji);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textPane.setText("");
+				textPane.updateUI();
+			}
+		});
+		btnClear.setBounds(236, 227, 89, 23);
+		contentPane.add(btnClear);
 		
 		
 	}
