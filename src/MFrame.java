@@ -41,7 +41,7 @@ public class MFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JRadioButton rdbtnJava = new JRadioButton("Java");
+		JRadioButton rdbtnJava = new JRadioButton("java");
 		rdbtnJava.setBounds(6, 7, 109, 23);
 		contentPane.add(rdbtnJava);
 		

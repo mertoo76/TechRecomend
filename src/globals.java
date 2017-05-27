@@ -10,7 +10,7 @@ public static  String tech;
                 new AprioriFrequentItemsetGenerator<>();
 		long startTime = System.nanoTime();
 		itemsetList.remove(0);
-        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.02);
+        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.1);
         
         long endTime = System.nanoTime();
        
@@ -40,8 +40,10 @@ public static  String tech;
         System.out.println("--- Association rules ---");
 
         for (AssociationRule<String> rule : associationRuleList) {
+        	
         	if(rule.getAntecedent().contains(tech)){
             System.out.printf("%2d: %s\n", i++, rule);
+            
         	}
             if(i==50){//cok fazla yazdiriyor
             	break;
