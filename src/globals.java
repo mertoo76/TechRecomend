@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
 public class globals {
 	public static List<Set<String>> itemsetList;
 public static  String tech;
+public static LinkedList<String> frameRule = new LinkedList<String>();
+
 	public static List<Set<String>> getItemsetList() {
 		AprioriFrequentItemsetGenerator<String> generator =
                 new AprioriFrequentItemsetGenerator<>();
@@ -43,7 +46,7 @@ public static  String tech;
         	
         	if(rule.getAntecedent().contains(tech)){
             System.out.printf("%2d: %s\n", i++, rule);
-            
+            frameRule.add(rule.toString());
         	}
             if(i==50){//cok fazla yazdiriyor
             	break;

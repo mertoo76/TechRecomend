@@ -9,6 +9,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
 
 public class MFrame extends JFrame {
 
@@ -42,18 +44,26 @@ public class MFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JRadioButton rdbtnJava = new JRadioButton("java");
-		rdbtnJava.setBounds(6, 7, 109, 23);
+		rdbtnJava.setBounds(6, 7, 66, 23);
 		contentPane.add(rdbtnJava);
 		
 		JRadioButton rdbtnPhp = new JRadioButton("php");
-		rdbtnPhp.setBounds(6, 42, 109, 23);
+		rdbtnPhp.setBounds(74, 7, 72, 23);
 		contentPane.add(rdbtnPhp);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(6, 87, 418, 129);
+		contentPane.add(scrollPane);
+		
+		JTextPane textPane = new JTextPane();
+		scrollPane.setViewportView(textPane);
 		
 		JButton btnFind = new JButton("Find");
 		btnFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Controller cont = new Controller();
 				if(rdbtnJava.isSelected()){
-					Controller cont = new Controller();
+					
 					String[] args = new String[3];
 					args[0] = "/data/crawl/root";
 					args[1] = "1";
@@ -67,7 +77,7 @@ public class MFrame extends JFrame {
 				}
 				
 				if(rdbtnPhp.isSelected()){
-					Controller cont = new Controller();
+					
 					String[] args = new String[3];
 					args[0] = "/data/crawl/root";
 					args[1] = "1";
@@ -79,9 +89,17 @@ public class MFrame extends JFrame {
 						e.printStackTrace();
 					}
 				}
+				String tmp="";
+				for(String x: cont.frameRule){
+					tmp=tmp+x+"\n";
+					
+				}
+				textPane.setText(tmp);
 			}
 		});
-		btnFind.setBounds(316, 193, 89, 23);
+		btnFind.setBounds(335, 227, 89, 23);
 		contentPane.add(btnFind);
+		
+		
 	}
 }

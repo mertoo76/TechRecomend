@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +10,8 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class Controller {
+	public static LinkedList<String> frameRule;
+	
 	public static void main(String[] args) throws Exception {
 		String crawlStorageFolder = "/data/crawl/root";
 		int numberOfCrawlers = 1;
@@ -53,7 +56,10 @@ public class Controller {
 		List<Set<String>> itemsetList2 = new ArrayList<>();
 		itemsetList2 = globals.getItemsetList();
 		//BURAYA !!!!!!
+		frameRule = globals.frameRule;
 		System.out.println("Hello darkness2");
         
 	}
+	
+	
 }
