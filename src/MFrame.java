@@ -11,10 +11,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class MFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -43,14 +45,6 @@ public class MFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JRadioButton rdbtnJava = new JRadioButton("java");
-		rdbtnJava.setBounds(6, 7, 66, 23);
-		contentPane.add(rdbtnJava);
-		
-		JRadioButton rdbtnPhp = new JRadioButton("php");
-		rdbtnPhp.setBounds(74, 7, 72, 23);
-		contentPane.add(rdbtnPhp);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(6, 87, 418, 129);
 		contentPane.add(scrollPane);
@@ -58,11 +52,20 @@ public class MFrame extends JFrame {
 		JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 		
+		textField = new JTextField();
+		textField.setBounds(73, 11, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
 		JButton btnFind = new JButton("Find");
 		btnFind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Controller cont = new Controller();
-				if(rdbtnJava.isSelected()){
+		
+				textPane.setText("");
+				
+				
+				/*	if(rdbtnJava.isSelected()){
 					
 					String[] args = new String[3];
 					args[0] = "/data/crawl/root";
@@ -88,8 +91,23 @@ public class MFrame extends JFrame {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}*/
+				
+				
+				String[] args = new String[3];
+				args[0] = "/data/crawl/root";
+				args[1] = "1";
+				args[2]= textField.getText();
+				try {
+					cont.main(args);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+				
+				////////////
 				String tmp="";
+				textPane.setText(tmp);
 				for(String x: cont.frameRule){
 					tmp=tmp+x+"\n";
 					
@@ -99,6 +117,12 @@ public class MFrame extends JFrame {
 		});
 		btnFind.setBounds(335, 227, 89, 23);
 		contentPane.add(btnFind);
+		
+		
+		
+		JLabel lblTeknoloji = new JLabel("Teknoloji:");
+		lblTeknoloji.setBounds(7, 14, 66, 14);
+		contentPane.add(lblTeknoloji);
 		
 		
 	}
