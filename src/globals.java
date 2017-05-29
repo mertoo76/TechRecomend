@@ -9,11 +9,11 @@ public static  String tech;
 public static LinkedList<String> frameRule = new LinkedList<String>();
 
 	public static List<Set<String>> getItemsetList() {
-		AprioriFrequentItemsetGenerator<String> generator =
-                new AprioriFrequentItemsetGenerator<>();
+		FrequentFinder<String> generator =
+                new FrequentFinder<>();
 		long startTime = System.nanoTime();
 		itemsetList.remove(0);
-        FrequentItemsetData<String> data = generator.generate(itemsetList, 0.1);
+        FrekansListeli<String> data = generator.generate(itemsetList, 0.1);
         
         long endTime = System.nanoTime();
        
@@ -32,9 +32,9 @@ public static LinkedList<String> frameRule = new LinkedList<String>();
                          (endTime - startTime) / 1_000_000);
 
         startTime = System.nanoTime();
-        List<AssociationRule<String>> associationRuleList = 
-                new AssociationRuleGenerator<String>()
-                        .mineAssociationRules(data, 0.5);
+        List<Association<String>> associationRuleList = 
+                new RuleGenerator<String>()
+                        .kuralBul(data, 0.5);
         endTime = System.nanoTime();
 
         i = 1;
@@ -42,7 +42,7 @@ public static LinkedList<String> frameRule = new LinkedList<String>();
         System.out.println();
         System.out.println("--- Association rules ---");
 
-        for (AssociationRule<String> rule : associationRuleList) {
+        for (Association<String> rule : associationRuleList) {
         	
         	if(rule.getAntecedent().contains(tech)){
             System.out.printf("%2d: %s\n", i++, rule);

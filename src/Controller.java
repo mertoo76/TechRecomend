@@ -50,8 +50,8 @@ public class Controller {
 		controller.start(MyCrawler.class, numberOfCrawlers);
 		
 		
-		AprioriFrequentItemsetGenerator<String> generator =
-                new AprioriFrequentItemsetGenerator<>();
+		FrequentFinder<String> generator =
+                new FrequentFinder<>();
 		long startTime = System.nanoTime();
 		List<Set<String>> itemsetList2 = new ArrayList<>();
 		itemsetList2 = globals.getItemsetList();

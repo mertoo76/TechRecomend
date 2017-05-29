@@ -8,14 +8,14 @@ import java.util.Set;
  * @author Github: mertoo76 & turkerozan
  * @version 0.1
  */
-public class FrequentItemsetData<I> {
+public class FrekansListeli<I> {
 
     private final List<Set<I>> frequentItemsetList;
     private final Map<Set<I>, Integer> supportCountMap;
     private final double minimumSupport;
     private final int numberOfTransactions;
 
-    FrequentItemsetData(List<Set<I>> frequentItemsetList,
+    FrekansListeli(List<Set<I>> frequentItemsetList,
                         Map<Set<I>, Integer> supportCountMap,
                         double minimumSupport,
                         int transactionNumber) {
