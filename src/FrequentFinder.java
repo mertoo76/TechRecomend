@@ -17,6 +17,7 @@ public class FrequentFinder<I> {
 		if (techList.isEmpty()) {
 			return null;
 		}
+		
 		Map<Set<I>, Integer> supportCounter = new HashMap<>();
 		List<Set<I>> frekansList = findFrequentItems(techList, supportCounter, minSupp);
 		Map<Integer, List<Set<I>>> map = new HashMap<>();

@@ -2,12 +2,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * This class holds the result information of a data-mining task.
- * 
- * @author Github: mertoo76 & turkerozan
- * @version 0.1
- */
+
 public class FrekansListeli<I> {
 
     private final List<Set<I>> frequentItemsetList;

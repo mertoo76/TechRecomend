@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
+//Bu sınıfta association rule tutulmaktadır.
 public class Association<I> {
 
     private final Set<I> ilk = new HashSet<>();
@@ -24,18 +24,18 @@ public class Association<I> {
         this(ilk, devam, Double.NaN);
     }
 
-    public Set<I> getAntecedent() {
+    public Set<I> getIlk() {
         return Collections.<I>unmodifiableSet(ilk);
     }
 
-    public Set<I> getConsequent() {
+    public Set<I> getDevam() {
         return Collections.<I>unmodifiableSet(devam);
     }
 
     public double getConfidence() {
         return conf;
     }
-
+    //association rulleri yazdırmak için 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

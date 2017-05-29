@@ -44,7 +44,7 @@ public static LinkedList<String> frameRule = new LinkedList<String>();
 
         for (Association<String> rule : associationRuleList) {
         	
-        	if(rule.getAntecedent().contains(tech)){
+        	if(rule.getIlk().contains(tech)){
             System.out.printf("%2d: %s\n", i++, rule);
             frameRule.add(rule.toString());
         	}
